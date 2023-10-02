@@ -1,7 +1,7 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { signIn, signOut, useSession } from 'next-auth/react';
+import { signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
 import Button from '@/components/Button';
 
@@ -10,10 +10,23 @@ function AuthButton() {
 	const router = useRouter();
 
 	if (session) {
-		return <Button onClick={() => signOut()}>Sign out</Button>;
+		return (
+			<Button variant="destructive" onClick={() => signOut()}>
+				Logout
+			</Button>
+		);
 	}
 
-	return <Button onClick={() => router.push('/login')}>Sign in</Button>;
+	return (
+		<>
+			<Button variant="ghost" onClick={() => router.push('/login')}>
+				Login
+			</Button>
+			<Button variant="ghost" onClick={() => router.push('/register')}>
+				Register
+			</Button>
+		</>
+	);
 }
 
 const NavMenu = () => {
@@ -32,10 +45,7 @@ const NavMenu = () => {
 						<Link href="/">Home</Link>
 					</li>
 					<li>
-						<Link href="/">Home</Link>
-					</li>
-					<li>
-						<Link href="/">Home</Link>
+						<Link href="/dashboard">Dashboard</Link>
 					</li>
 				</ul>
 				<ul className="flex items-center gap-x-2">

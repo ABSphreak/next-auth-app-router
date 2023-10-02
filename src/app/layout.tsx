@@ -2,6 +2,7 @@ import './globals.css';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { getServerSession } from 'next-auth';
+import { Toaster } from 'react-hot-toast';
 
 import SessionProvider from '@/providers/SessionProvider';
 import NavMenu from '@/components/NavMenu';
@@ -23,6 +24,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 					<NavMenu />
 					{children}
 				</SessionProvider>
+				<Toaster />
 			</body>
 		</html>
 	);
