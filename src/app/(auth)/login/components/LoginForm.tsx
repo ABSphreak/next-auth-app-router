@@ -71,7 +71,7 @@ const LoginForm = () => {
 
 	return (
 		<div className="p-6 rounded-lg border flex-col border-slate-100 shadow-lg w-96 flex justify-center gap-y-3">
-			Login
+			Login with Email
 			<form onSubmit={handleSubmitEmail(handleEmailLogin)} className="flex flex-col justify-center gap-y-3">
 				<Input required className="w-full" placeholder="Email" type="email" {...registerEmail('email')} />
 				<Input required className="w-full" placeholder="Password" autoComplete="off" type="password" {...registerEmail('password')} />
@@ -80,6 +80,7 @@ const LoginForm = () => {
 				</Button>
 			</form>
 			<div className="h-[1px] bg-slate-200 my-4" />
+			Login with OTP
 			{otpId ? (
 				<>
 					<Input required className="w-full" placeholder="OTP" value={otp} type="text" onChange={e => setOtp(e.target.value)} />
@@ -96,6 +97,7 @@ const LoginForm = () => {
 				</>
 			)}
 			<div className="h-[1px] bg-slate-200 my-4" />
+			Login with OAuth
 			<Button className="w-full shadow-sm text-zinc-700 bg-white border border-zinc-200 hover:bg-zinc-100 active:bg-zinc-200" onClick={() => signIn('google')}>
 				Sign in with Google <GoogleIcon />
 			</Button>

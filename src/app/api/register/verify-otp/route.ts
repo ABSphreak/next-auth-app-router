@@ -2,7 +2,16 @@ import { db } from '@/lib/db';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(req: NextRequest) {
-	const { otpId, otp } = await req.json();
+	const { otpId, otp, mobile } = await req.json();
+
+	if (!mobile) {
+		return NextResponse.json(
+			{ message: 'Please enter a valid mobile number' },
+			{
+				status: 400,
+			}
+		);
+	}
 
 	if (!otp || !otpId) {
 		return NextResponse.json(
@@ -47,8 +56,15 @@ export async function POST(req: NextRequest) {
 		);
 	}
 
+	const user = await db.user.create({
+		data: {
+			mobile,
+		},
+	});
+
 	return NextResponse.json(
 		{
+			user,
 			message: 'OTP verified successfully',
 		},
 		{ status: 200 }
